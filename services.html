@@ -1,0 +1,338 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Vedagreen Biotech — Services</title>
+    
+    <!-- 🌿 EMBEDDED CSS STYLES 🌿 -->
+    <style>
+        /* 1. Global & Reset Styles */
+        *, *::before, *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Base Typography */
+        body {
+            font-family: 'Georgia', serif; 
+            line-height: 1.6;
+            color: #333;
+            background-color: #f7f9f7; 
+        }
+
+        /* Headings */
+        h1, h2, h3 {
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            color: #0d471f; /* Deep Forest Green */
+            margin-bottom: 0.5em;
+            font-weight: 700;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            text-align: center;
+            padding-bottom: 0.5rem;
+        }
+
+        /* Links */
+        a {
+            color: #38761d;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        a:hover {
+            color: #5aa130;
+            text-decoration: underline;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+
+        .muted {
+            color: #6a6a6a; 
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .section {
+            padding: 2.5rem 0;
+        }
+        
+        /* Service Card Styling */
+        .service-card {
+            background-color: #ffffff;
+            border-left: 5px solid #a3c98d; /* Subtle green accent line */
+            padding: 2rem;
+            border-radius: 8px;
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+        }
+        
+        .service-card:hover {
+            border-left-color: #38761d;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .service-card.alt {
+            background-color: #e8f0e5; /* Light green/gray for alternating sections */
+            border-left: 5px solid #5aa130;
+        }
+
+        .service-card h2 {
+            font-size: 1.8rem;
+            margin-top: 0;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: #1a6237;
+        }
+        
+        .service-card h2 .icon {
+            font-size: 1.5em;
+            color: #5aa130;
+        }
+        
+        .service-card p {
+            margin-top: 0.75rem;
+            color: #555;
+        }
+
+        /* List Styling for Agronomy Support */
+        .agronomy-list {
+            list-style: none;
+            padding-left: 0;
+            margin-top: 1rem;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 0.5rem 1.5rem;
+        }
+
+        .agronomy-list li {
+            position: relative;
+            padding-left: 1.5rem;
+            font-size: 1rem;
+            color: #444;
+        }
+
+        .agronomy-list li::before {
+            content: '★'; /* Star bullet point for emphasis */
+            position: absolute;
+            left: 0;
+            font-size: 0.8rem;
+            color: #38761d; /* Dark green star */
+        }
+        
+        /* 2. Header & Navigation Styling */
+        .site-header {
+            background-color: #ffffff;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-inner {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .brand {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #1a6237;
+        }
+
+        .nav ul {
+            list-style: none;
+            display: flex;
+            gap: 1.5rem;
+        }
+
+        .nav a {
+            font-weight: 500;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            padding: 0.25rem 0;
+        }
+
+        .nav-toggle {
+            display: none; 
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: #1a6237;
+        }
+
+        /* 3. Footer */
+        .site-footer {
+            background-color: #0d471f;
+            color: #c9dbc1;
+            padding: 2rem 0;
+            font-size: 0.85rem;
+            margin-top: 3rem;
+        }
+
+        .footer-inner {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap; 
+            text-align: center;
+        }
+
+        .site-footer p {
+            margin-bottom: 0.5rem;
+        }
+
+        .site-footer a {
+            color: #c9dbc1;
+        }
+
+        .site-footer a:hover {
+            color: #fff;
+        }
+
+        .footer-nav a:not(:last-child) {
+            margin-right: 0.5rem;
+        }
+
+        /* 4. Mobile Responsiveness */
+        @media (max-width: 768px) {
+            .nav-toggle {
+                display: block;
+            }
+
+            .nav {
+                display: none; 
+                width: 100%;
+                position: absolute;
+                top: 65px;
+                left: 0;
+                background-color: #ffffff;
+                box-shadow: 0 5px 5px rgba(0, 0, 0, 0.1);
+                padding: 1rem 0;
+            }
+
+            .nav.nav-open {
+                display: block;
+            }
+
+            .nav ul {
+                flex-direction: column;
+                gap: 0;
+            }
+
+            .nav li {
+                border-bottom: 1px solid #eee;
+            }
+
+            .nav a {
+                display: block;
+                padding: 0.75rem 1.5rem;
+            }
+            
+            .footer-inner {
+                flex-direction: column;
+            }
+            
+            .agronomy-list {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="site-header">
+        <div class="container header-inner">
+            <a class="brand" href="index.html">Vedagreen Biotech</a>
+            <button id="navToggle" class="nav-toggle" aria-label="Toggle navigation">☰</button>
+            <nav id="mainNav" class="nav">
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="products.html">Products</a></li>
+                    <li><a href="services.html">Services</a></li>
+                    <li><a href="sustainability.html">Sustainability</a></li>
+                    <li><a href="gallery.html">Gallery</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container section">
+        <h1>Comprehensive Agricultural Solutions</h1>
+        <p class="muted">We go beyond providing plants. We offer full-spectrum support from lab to harvest, ensuring optimal yield and success for your project.</p>
+
+        <!-- Service 1: Tissue Culture Plant Production -->
+        <section class="service-card">
+            <h2><span class="icon">🔬</span> 1. Tissue Culture Plant Production</h2>
+            <p>**Large-scale production** of disease-free and genetically stable plants using advanced micropropagation technologies. We adhere to **strict quality control** measures to guarantee genetic purity and consistent vitality across all batches, ensuring the highest field success rates.</p>
+        </section>
+
+        <!-- Service 2: Acclimatization & Hardening -->
+        <section class="service-card alt">
+            <h2><span class="icon">☀️</span> 2. Acclimatization & Hardening</h2>
+            <p>Our dedicated **hardening units** transition plants from the lab environment to field readiness under controlled conditions. This critical, post-lab process develops robust root systems and high tolerance to outdoor conditions, leading to **strong survival and easy field establishment**.</p>
+        </section>
+
+        <!-- Service 3: Farm Advisory & Agronomy Support -->
+        <section class="service-card">
+            <h2><span class="icon">🧑‍🌾</span> 3. Farm Advisory & Agronomy Support</h2>
+            <p>Our expert agronomists provide **on-site and remote technical support** throughout the entire crop cycle. We equip you with the knowledge needed to maximize the potential of your tissue culture plants:</p>
+            <ul class="agronomy-list">
+                <li>Soil preparation guidance</li>
+                <li>Optimal planting techniques and timings</li>
+                <li>Tailored nutrient management plans</li>
+                <li>Proactive pest & disease control strategies</li>
+                <li>Advanced yield optimization support</li>
+            </ul>
+        </section>
+
+        <!-- Service 4: Plantation Development Support -->
+        <section class="service-card alt">
+            <h2><span class="icon">🗺️</span> 4. Plantation Development Support</h2>
+            <p>Specialized assistance for **large-scale agriculture and agro-industrial projects**. Services include comprehensive site assessment, detailed project planning, feasibility analysis, and full implementation support from concept to first harvest, ensuring a smooth and profitable rollout.</p>
+        </section>
+
+        <!-- Service 5: Custom Tissue Culture Multiplication -->
+        <section class="service-card">
+            <h2><span class="icon">🧬</span> 5. Custom Tissue Culture Multiplication</h2>
+            <p>We offer contract production services for specialized needs. Ideal for nurseries, corporate farms, and research projects requiring specific varieties or large, flexible quantities within set timelines and custom specifications. Confidentiality and genetic fidelity are guaranteed.</p>
+        </section>
+
+        <p class="muted" style="text-align: center; margin-top:2rem;"><a href="contact.html">Ready to start your project? Request a consultation →</a></p>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container footer-inner">
+            <p>© 2025 Vedagreen Biotech Pvt. Ltd. | Empowering Sustainable Agriculture</p>
+            <nav class="footer-nav">
+                <a href="index.html">Home</a> · <a href="about.html">About</a> · <a href="products.html">Products</a> · <a href="services.html">Services</a>
+            </nav>
+        </div>
+    </footer>
+
+    <!-- 💻 EMBEDDED JAVASCRIPT FOR MOBILE NAVIGATION 💻 -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const navToggle = document.getElementById('navToggle');
+            const mainNav = document.getElementById('mainNav');
+
+            navToggle.addEventListener('click', function() {
+                mainNav.classList.toggle('nav-open');
+            });
+        });
+    </script>
+</body>
+</html>

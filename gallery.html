@@ -1,0 +1,473 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Vedagreen Biotech — Gallery</title>
+    
+    <style>
+        /* 1. Global & Reset Styles (Reusing established theme) */
+        *, *::before, *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        :root {
+            --color-primary: #0d471f; /* Deep Forest Green */
+            --color-secondary: #1a6237; /* Medium Green */
+            --color-accent: #38761d; /* Bright Green Link/Button */
+            --color-light: #f7f9f7; /* Off-White for Background */
+            --color-alt-section: #e8f0e5; /* Very Light Green for alternate sections */
+            --color-text: #333;
+            --color-muted: #6a6a6a;
+            --font-serif: 'Georgia', serif;
+            --font-sans: 'Helvetica Neue', Arial, sans-serif;
+        }
+
+        body {
+            font-family: var(--font-serif); 
+            line-height: 1.6;
+            color: var(--color-text);
+            background-color: var(--color-light); 
+        }
+
+        h1, h2, h3 {
+            font-family: var(--font-sans);
+            color: var(--color-primary); 
+            margin-bottom: 0.5em;
+            font-weight: 700;
+        }
+
+        h1 {
+            font-size: 3.2rem; 
+            text-align: center;
+            padding-bottom: 1rem;
+            color: var(--color-secondary); 
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-top: 1rem;
+        }
+        
+        h2 {
+            font-size: 2.2rem; 
+            color: var(--color-primary); 
+            margin-top: 2.5rem; 
+            border-left: 5px solid var(--color-accent); /* Green Accent Line */
+            padding-left: 15px;
+            padding-bottom: 0.5rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        a {
+            color: var(--color-accent);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        a:hover {
+            color: var(--color-secondary);
+            text-decoration: underline;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+
+        .muted {
+            color: var(--color-muted); 
+            text-align: center;
+            font-size: 1.15rem;
+            margin-bottom: 3rem;
+        }
+
+        .section {
+            padding: 3rem 0; 
+        }
+        
+        .section.alt {
+            background-color: var(--color-alt-section);
+            padding: 4rem 0; 
+        }
+
+        /* 2. Header & Navigation (Basic Structure) */
+        .site-header {
+            background-color: #ffffff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        .header-inner {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .brand {
+            font-size: 1.75rem; 
+            font-weight: 800;
+            color: var(--color-secondary);
+        }
+        .nav ul {
+            list-style: none;
+            display: flex;
+            gap: 1.5rem;
+        }
+        .nav a {
+            font-weight: 600;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            padding: 0.5rem 0;
+        }
+        .nav-toggle {
+            display: none; 
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--color-primary);
+        }
+
+        /* 3. Gallery Grid Styling */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Responsive columns */
+            gap: 20px;
+        }
+
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer; /* Indicates images are clickable */
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 350px; /* Fixed height for uniformity */
+            object-fit: cover;
+            display: block; /* Remove extra space below image */
+        }
+        
+        .gallery-item:hover {
+            transform: scale(1.02);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+        
+        .gallery-item figcaption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background: rgba(0, 0, 0, 0.6);
+            color: white;
+            padding: 10px;
+            font-family: var(--font-sans);
+            font-size: 0.9rem;
+            text-align: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .gallery-item:hover figcaption {
+            opacity: 1;
+        }
+        
+        /* Lightbox Styles */
+        .lightbox {
+            display: none;
+            position: fixed;
+            z-index: 2000; /* High z-index to be on top */
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            justify-content: center;
+            align-items: center;
+        }
+
+        .lightbox.is-open {
+            display: flex;
+        }
+
+        .lightbox-content {
+            max-width: 90%;
+            max-height: 90%;
+            object-fit: contain;
+            border-radius: 8px;
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
+        }
+
+        .lightbox-close {
+            position: absolute;
+            top: 20px;
+            right: 35px;
+            color: #fff;
+            font-size: 40px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+
+        .lightbox-close:hover {
+            color: var(--color-accent);
+        }
+
+        /* 4. Footer */
+        .site-footer {
+            background-color: var(--color-primary);
+            color: #c9dbc1;
+            padding: 2rem 0; 
+            font-size: 0.9rem;
+            margin-top: 4rem; 
+            text-align: center;
+        }
+        
+        /* 5. Mobile Responsiveness */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.5rem;
+            }
+            .nav-toggle {
+                display: block;
+            }
+            .nav {
+                display: none; 
+                width: 100%;
+                position: absolute;
+                top: 75px;
+                left: 0;
+                background-color: #ffffff;
+                box-shadow: 0 5px 5px rgba(0, 0, 0, 0.1);
+                padding: 0;
+            }
+            .nav.nav-open {
+                display: block;
+            }
+            .nav ul {
+                flex-direction: column;
+                gap: 0;
+            }
+            .nav li {
+                border-bottom: 1px solid #eee;
+            }
+            .nav a {
+                display: block;
+                padding: 0.75rem 1.5rem;
+            }
+            .gallery-item img {
+                height: 250px;
+            }
+            .section.alt {
+                padding: 3rem 0; 
+            }
+            .lightbox-close {
+                top: 15px;
+                right: 20px;
+                font-size: 30px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="site-header">
+        <div class="container header-inner">
+            <a class="brand" href="index.html">Vedagreen Biotech</a>
+            <button id="navToggle" class="nav-toggle" aria-label="Toggle navigation">☰</button>
+            <nav id="mainNav" class="nav">
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="products.html">Products</a></li>
+                    <li><a href="services.html">Services</a></li>
+                    <li><a href="sustainability.html">Sustainability</a></li>
+                    <li><a href="gallery.html">Gallery</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container section">
+        <h1>Our Vision In Pictures 📸</h1>
+        <p class="muted">Explore our state-of-the-art facilities, high-quality plantlets, and collaborative work with farmers across the nation.</p>
+
+        <section>
+            <h2>Micropropagation & In-Vitro Culture</h2>
+            <div class="gallery-grid">
+                <figure class="gallery-item" data-caption="Sterile transfer hood operations">
+                    <img src="https://images.unsplash.com/photo-1588775438812-70b79e2c6596?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w1NzcxMjd8MHwxfHNlYXJjaHwzfHxzY2llbmNlJTIwbGFtfGVufDB8fHx8MTcxNDk3NDA3M3ww&ixlib=rb-4.0.3&q=80&w=800" alt="Sterile transfer hood operations" data-src="https://images.unsplash.com/photo-1588775438812-70b79e2c6596?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w1NzcxMjd8MHwxfHNlYXJjaHwzfHxzY2llbmNlJTIwbGFtfGVufDB8fHx8MTcxNDk3NDA3M3ww&ixlib=rb-4.0.3&q=80&w=1200" />
+                    <figcaption>Sterile transfer hood operations</figcaption>
+                </figure>
+                <figure class="gallery-item" data-caption="Tissue culture bottles in growth racks">
+                    <img src="https://images.unsplash.com/photo-1621532057924-42b78990141f?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w1NzcxMjd8MHwxfHNlYXJjaHwxNXx8dGlzc3VlJTIwY3VsdHVyZXxlbnwwfHx8fDE3MTQ5NzQyMTJ8MA&ixlib=rb-4.0.3&q=80&w=800" alt="Tissue culture bottles in growth racks" data-src="https://images.unsplash.com/photo-1621532057924-42b78990141f?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w1NzcxMjd8MHwxfHNlYXJjaHwxNXx8dGlzc3VlJTIwY3VsdHVyZXxlbnwwfHx8fDE3MTQ5NzQyMTJ8MA&ixlib=rb-4.0.3&q=80&w=1200" />
+                    <figcaption>Tissue culture bottles in growth racks</figcaption>
+                </figure>
+                 <figure class="gallery-item" data-caption="Small plantlets thriving in jars">
+                    <img src="https://images.unsplash.com/photo-1550978939-f9c1b48d6179?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w1NzcxMjd8MHwxfHNlYXJjaHwyMHx8cGxhbnQlMjBpbiUyMGxhYiUyMGphcnxlbnwwfHx8fDE3MTQ5NzQyMTJ8MA&ixlib=rb-4.0.3&q=80&w=800" alt="Small plantlets thriving in jars" data-src="https://images.unsplash.com/photo-1550978939-f9c1b48d6179?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w1NzcxMjd8MHwxfHNlYXJjaHwyMHx8cGxhbnQlMjBpbiUyMGxhYiUyMGphcnxlbnwwfHx8fDE3MTQ5NzQyMTJ8MA&ixlib=rb-4.0.3&q=80&w=1200" />
+                    <figcaption>Small plantlets thriving in jars</figcaption>
+                </figure>
+            </div>
+        </section>
+
+        <section class="section alt">
+            <h2>Primary Hardening & Nursery Unit</h2>
+            <div class="gallery-grid">
+                 <figure class="gallery-item" data-caption="Acclimatization under controlled conditions">
+                    <img src="https://images.unsplash.com/photo-1542470659-c290a6184518?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w1NzcxMjd8MHwxfHNlYXJjaHwxNnx8cGVyZmFjdCUyMG51cnNlcnl8ZW58MHx8fHwxNzE0OTc0MzUzfDA&ixlib=rb-4.0.3&q=80&w=800" alt="Acclimatization under controlled conditions" data-src="https://images.unsplash.com/photo-1542470659-c290a6184518?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w1NzcxMjd8MHwxfHNlYXJjaHwxNnx8cGVyZmFjdCUyMG51cnNlcnl8ZW58MHx8fHwxNzE0OTc0MzUzfDA&ixlib=rb-4.0.3&q=80&w=1200" />
+                    <figcaption>Acclimatization under controlled conditions</figcaption>
+                </figure>
+                <figure class="gallery-item" data-caption="Polyhouse for secondary hardening phase">
+                    <img src="https://images.unsplash.com/photo-1620305886981-d1024345244e?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w1NzcxMjd8MHwxfHNlYXJjaHw3fHxwb2x5aG91c2UlMjBwbGFudHxlbnwwfHx8fDE3MTQ5NzQzNTl8MA&ixlib=rb-4.0.3&q=80&w=800" alt="Polyhouse for secondary hardening phase" data-src="https://images.unsplash.com/photo-1620305886981-d1024345244e?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w1NzcxMjd8MHwxfHNlYXJjaHw3fHxwb2x5aG91c2UlMjBwbGFudHxlbnwwfHx8fDE3MTQ5NzQzNTl8MA&ixlib=rb-4.0.3&q=80&w=1200" />
+                    <figcaption>Polyhouse for secondary hardening phase</figcaption>
+                </figure>
+                 <figure class="gallery-item" data-caption="Healthy plantlets ready for field transfer">
+                    <img src="https://images.unsplash.com/photo-1596700813943-b2488a0335e9?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w1NzcxMjd8MHwxfHNlYXJjaHwzfHxwcmVwYXJlZCUyMHBsYW50cyUyMGZvciUyMGZpZWxkfGVufDB8fHx8MTcxNDk3NDU3M3ww&ixlib=rb-4.0.3&q=80&w=800" alt="Healthy plantlets ready for field transfer" data-src="https://images.unsplash.com/photo-1596700813943-b2488a0335e9?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w1NzcxMjd8MHwxfHNlYXJjaHwzfHxwcmVwYXJlZCUyMHBsYW50cyUyMGZvciUyMGZpZWxkfGVufDB8fHx8MTcxNDk3NDU3M3ww&ixlib=rb-4.0.3&q=80&w=1200" />
+                    <figcaption>Healthy plantlets ready for field transfer</figcaption>
+                </figure>
+            </div>
+        </section>
+        
+        <section>
+            <h2>Quality Control & Packaging</h2>
+            <p class="muted" style="margin-top: 0; margin-bottom: 2rem; font-size: 1rem;">Ensuring every plant is robust and safely delivered.</p>
+            <div class="gallery-grid">
+                <figure class="gallery-item" data-caption="Final disease-free quality inspection">
+                    <img src="https://images.unsplash.com/photo-1557802102-3f7461944e8d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w1NzcxMjd8MHwxfHNlYXJjaHwzOXx8cXVhbGl0eSUyMGNoZWNrJTIwYWdyaWN1bHR1cmV8ZW58MHx8fHwxNzE0OTc0NjM4fDA&ixlib=rb-4.0.3&q=80&w=800" alt="Final disease-free quality inspection" data-src="https://images.unsplash.com/photo-1557802102-3f7461944e8d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w1NzcxMjd8MHwxfHNlYXJjaHwzOXx8cXVhbGl0eSUyMGNoZWNrJTIwYWdyaWN1bHR1cmV8ZW58MHx8fHwxNzE0OTc0NjM4fDA&ixlib=rb-4.0.3&q=80&w=1200" />
+                    <figcaption>Final disease-free quality inspection</figcaption>
+                </figure>
+                <figure class="gallery-item" data-caption="Robust packaging for long-distance transit">
+                    <img src="https://images.unsplash.com/photo-1582213782172-ace3c841a1bb?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w1NzcxMjd8MHwxfHNlYXJjaHwyMHx8cGxhbnQlMjBwYWNrYWdpbmd8ZW58MHx8fHwxNzE0OTc0NjY3fDA&ixlib=rb-4.0.3&q=80&w=800" alt="Robust packaging for long-distance transit" data-src="https://images.unsplash.com/photo-1582213782172-ace3c841a1bb?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w1NzcxMjd8MHwxfHNlYXJjaHwyMHx8cGxhbnQlMjBwYWNrYWdpbmd8ZW58MHx8fHwxNzE0OTc0NjY3fDA&ixlib=rb-4.0.3&q=80&w=1200" />
+                    <figcaption>Robust packaging for long-distance transit</figcaption>
+                </figure>
+                <figure class="gallery-item" data-caption="Shipment loading and logistics management">
+                    <img src="https://images.unsplash.com/photo-1622340316362-e6e232b753f7?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w1NzcxMjd8MHwxfHNlYXJjaHwzM3x8bG9hZGluZyUyMHBhY2thZ2VzfGVufDB8fHx8MTcxNDk3NDcwMnww&ixlib=rb-4.0.3&q=80&w=800" alt="Shipment loading and logistics management" data-src="https://images.unsplash.com/photo-1622340316362-e6e232b753f7?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w1NzcxMjd8MHwxfHNlYXJjaHwzM3x8bG9hZGluZyUyMHBhY2thZ2VzfGVufDB8fHx8MTcxNDk3NDcwMnww&ixlib=rb-4.0.3&q=80&w=1200" />
+                    <figcaption>Shipment loading and logistics management</figcaption>
+                </figure>
+            </div>
+        </section>
+        
+        <section class="section alt">
+            <h2>Field Plantations & Success Stories</h2>
+            <div class="gallery-grid">
+                <figure class="gallery-item" data-caption="High-density teak plantation (5 years old)">
+                    <img src="https://images.unsplash.com/photo-1555547432-fd2f08573489?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w1NzcxMjd8MHwxfHNlYXJjaHw0fHx0cm9waWNhbCUyMHRyZWVzJTIwZmllbGR8ZW58MHx8fHwxNzE0OTc0NzUzfDA&ixlib=rb-4.0.3&q=80&w=800" alt="High-density teak plantation (5 years old)" data-src="https://images.unsplash.com/photo-1555547432-fd2f08573489?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w1NzcxMjd8MHwxfHNlYXJjaHw0fHx0cm9waWNhbCUyMHRyZWVzJTIwZmllbGR8ZW58MHx8fHwxNzE0OTc0NzUzfDA&ixlib=rb-4.0.3&q=80&w=1200" />
+                    <figcaption>High-density teak plantation (5 years old)</figcaption>
+                </figure>
+                <figure class="gallery-item" data-caption="Successful banana tissue culture farm">
+                    <img src="https://images.unsplash.com/photo-1598413697960-983359d7b30c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w1NzcxMjd8MHwxfHNlYXJjaHwxNnx8YmFuYW5hJTIwZmllbGR8ZW58MHx8fHwxNzE0OTc0NzgzfDA&ixlib=rb-4.0.3&q=80&w=800" alt="Successful banana tissue culture farm" data-src="https://images.unsplash.com/photo-1598413697960-983359d7b30c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w1NzcxMjd8MHwxfHNlYXJjaHwxNnx8YmFuYW5hJTIwZmllbGR8ZW58MHx8fHwxNzE0OTc0NzgzfDA&ixlib=rb-4.0.3&q=80&w=1200" />
+                    <figcaption>Successful banana tissue culture farm</figcaption>
+                </figure>
+                 <figure class="gallery-item" data-caption="Healthy ginger crop from pathogen-free stock">
+                    <img src="https://images.unsplash.com/photo-1606411516027-6f73117564d7?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w1NzcxMjd8MHwxfHNlYXJjaHw1fHxnaW5nZXIlMjBmaWVsZHxlbnwwfHx8fDE3MTQ5NzQ4MjZ8MA&ixlib=rb-4.0.3&q=80&w=800" alt="Healthy ginger crop from pathogen-free stock" data-src="https://images.unsplash.com/photo-1606411516027-6f73117564d7?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w1NzcxMjd8MHwxfHNlYXJjaHw1fHxnaW5nZXIlMjBmaWVsZHxlbnwwfHx8fDE3MTQ5NzQ4MjZ8MA&ixlib=rb-4.0.3&q=80&w=1200" />
+                    <figcaption>Healthy ginger crop from pathogen-free stock</figcaption>
+                </figure>
+            </div>
+        </section>
+
+        <section>
+            <h2>Farmer Meetings & Training Sessions</h2>
+            <div class="gallery-grid">
+                <figure class="gallery-item" data-caption="Field day: Technical training for new growers">
+                    <img src="https://images.unsplash.com/photo-1608688461715-38b30f8c36cc?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w1NzcxMjd8MHwxfHNlYXJjaHwzMnx8ZmFybWVycyUyMHRyYWluaW5nfGVufDB8fHx8MTcxNDk3NDg1OXww&ixlib=rb-4.0.3&q=80&w=800" alt="Field day: Technical training for new growers" data-src="https://images.unsplash.com/photo-1608688461715-38b30f8c36cc?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w1NzcxMjd8MHwxfHNlYXJjaHwzMnx8ZmFybWVycyUyMHRyYWluaW5nfGVufDB8fHx8MTcxNDk3NDg1OXww&ixlib=rb-4.0.3&q=80&w=1200" />
+                    <figcaption>Field day: Technical training for new growers</figcaption>
+                </figure>
+                <figure class="gallery-item" data-caption="Community meeting on agroforestry best practices">
+                    <img src="https://images.unsplash.com/photo-1533134109968-07ff2402135c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w1NzcxMjd8MHwxfHNlYXJjaHw3OXx8ZmFybWVycyUyMG1lZXRpbmd8ZW58MHx8fHwxNzE0OTc0ODk3fDA&ixlib=rb-4.0.3&q=80&w=800" alt="Community meeting on agroforestry best practices" data-src="https://images.unsplash.com/photo-1533134109968-07ff2402135c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w1NzcxMjd8MHwxfHNlYXJjaHw3OXx8ZmFybWVycyUyMG1lZXRpbmd8ZW58MHx8fHwxNzE0OTc0ODk3fDA&ixlib=rb-4.0.3&q=80&w=1200" />
+                    <figcaption>Community meeting on agroforestry best practices</figcaption>
+                </figure>
+                 <figure class="gallery-item" data-caption="Hands-on workshop with farmers">
+                    <img src="https://images.unsplash.com/photo-1553095066-50146e736853?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w1NzcxMjd8MHwxfHNlYXJjaHwzM3x8ZmFybWVyJTIwd29ya3Nob3B8ZW58MHx8fHwxNzE0OTczNzA0fDA&ixlib=rb-4.0.3&q=80&w=800" alt="Hands-on workshop with farmers" data-src="https://images.unsplash.com/photo-1553095066-50146e736853?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w1NzcxMjd8MHwxfHNlYXJjaHwzM3x8ZmFybWVyJTIwd29ya3Nob3B8ZW58MHx8fHwxNzE0OTczNzA0fDA&ixlib=rb-4.0.3&q=80&w=1200" />
+                    <figcaption>Hands-on workshop with farmers</figcaption>
+                </figure>
+            </div>
+        </section>
+        
+        <section class="section alt">
+            <h2 style="text-align: center;">Video Showcase 🎬</h2>
+            <p style="text-align: center; margin-bottom: 2rem; color: var(--color-secondary);">See our process in action! (Placeholder Video)</p>
+            <div style="max-width: 800px; margin: 0 auto; display: grid; grid-template-columns: 1fr; gap: 20px;">
+                <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%; background: #000; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.2);">
+                    <iframe 
+                        style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0;" 
+                        src="https://www.youtube.com/embed/XyWn8Q31z10?controls=0" 
+                        title="Vedagreen Biotech Process Video" 
+                        frameborder="0" 
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                        allowfullscreen
+                    ></iframe>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <div id="lightbox" class="lightbox">
+        <span class="lightbox-close">&times;</span>
+        <img class="lightbox-content" id="lightboxImage" />
+    </div>
+
+    <footer class="site-footer">
+        <div class="container footer-inner">
+            <p>© 2025 Vedagreen Biotech Pvt. Ltd. | **Innovating for a Greener Tomorrow**</p>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const navToggle = document.getElementById('navToggle');
+            const mainNav = document.getElementById('mainNav');
+            const galleryItems = document.querySelectorAll('.gallery-item');
+            const lightbox = document.getElementById('lightbox');
+            const lightboxImage = document.getElementById('lightboxImage');
+            const closeButton = document.querySelector('.lightbox-close');
+
+            // --- 1. Mobile Nav Logic ---
+            if (navToggle && mainNav) {
+                navToggle.addEventListener('click', function() {
+                    mainNav.classList.toggle('nav-open');
+                });
+            }
+
+            // --- 2. Lightbox Logic ---
+            galleryItems.forEach(item => {
+                item.addEventListener('click', function() {
+                    const fullSrc = this.querySelector('img').getAttribute('data-src');
+                    const caption = this.getAttribute('data-caption');
+                    
+                    lightboxImage.src = fullSrc;
+                    lightboxImage.alt = caption;
+                    lightbox.classList.add('is-open');
+                    document.body.style.overflow = 'hidden'; // Prevent scrolling the body
+                });
+            });
+
+            function closeLightbox() {
+                lightbox.classList.remove('is-open');
+                document.body.style.overflow = '';
+            }
+
+            closeButton.addEventListener('click', closeLightbox);
+
+            // Close when clicking outside the image
+            lightbox.addEventListener('click', function(event) {
+                if (event.target === lightbox) {
+                    closeLightbox();
+                }
+            });
+
+            // Close on Escape key
+            document.addEventListener('keydown', function(event) {
+                if (event.key === 'Escape' && lightbox.classList.contains('is-open')) {
+                    closeLightbox();
+                }
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,434 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Vedagreen Biotech — Home</title>
+    <meta name="description" content="Premium tissue culture plants, agronomy support and sustainable plantation solutions." />
+    
+    <style>
+        /* 1. Global & Reset Styles */
+        *, *::before, *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Base Typography */
+        body {
+            font-family: 'Georgia', serif; /* A classic, trustworthy serif font */
+            line-height: 1.6;
+            color: #333; /* Dark gray for prose */
+            background-color: #f7f9f7; /* Off-white/Creamy background */
+        }
+
+        /* Headings - Use a clean, modern sans-serif for contrast and modernity */
+        h1, h2, h3 {
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            color: #0d471f; /* Deep Forest Green for emphasis */
+            margin-bottom: 0.5em;
+            font-weight: 700;
+        }
+
+        /* Links */
+        a {
+            color: #38761d; /* Vibrant Green for links */
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        a:hover {
+            color: #5aa130;
+            text-decoration: underline;
+        }
+
+        .container {
+            max-width: 1200px; /* Wider container for a modern feel */
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+
+        .muted {
+            color: #6a6a6a; /* Lighter gray for secondary text */
+        }
+
+        .section {
+            padding: 4rem 0; /* Generous padding for separation */
+        }
+
+        .alt {
+            background-color: #e8f0e5; /* Light green/gray for alternating sections */
+        }
+
+        /* 2. Header & Navigation Styling */
+        .site-header {
+            background-color: #ffffff;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05); /* Subtle shadow */
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-inner {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .brand {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #1a6237; /* Company primary green */
+        }
+
+        .nav ul {
+            list-style: none;
+            display: flex; /* Horizontal navigation */
+            gap: 1.5rem;
+        }
+
+        .nav a {
+            font-weight: 500;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            padding: 0.25rem 0;
+        }
+
+        /* Mobile Toggle - Hide by default */
+        .nav-toggle {
+            display: none; 
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: #1a6237;
+        }
+
+        /* 3. Product Grid & Cards */
+        .featured-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Responsive Grid */
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .product-card {
+            background: #fff;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            overflow: hidden; /* Important for containing image borders */
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px); /* Lift effect on hover */
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .product-card img {
+            width: 100%;
+            height: 200px; /* Fixed height for uniformity */
+            object-fit: cover; /* Ensures image covers the area without distortion */
+            display: block;
+        }
+
+        .card-body {
+            padding: 1.25rem;
+        }
+
+        .product-card h3 {
+            font-size: 1.2rem;
+            margin-bottom: 0.25rem;
+            color: #1a6237;
+        }
+
+        .product-card p {
+            font-size: 0.9rem;
+        }
+
+        /* 4. Why Choose Us (Grid) */
+        .why-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .why-grid .card {
+            padding: 1.5rem;
+            background-color: #fff;
+            border-left: 5px solid #a3c98d; /* Subtle color accent */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+            border-radius: 4px;
+        }
+
+        .why-grid h3 {
+            font-size: 1.1rem;
+            color: #0d471f;
+        }
+
+        /* 5. Call to Action (CTA) */
+        .testimonial {
+            text-align: center;
+            padding: 3rem;
+            background-color: #fff;
+            border-radius: 10px;
+            border: 2px solid #5aa130;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .testimonial strong {
+            font-size: 1.5rem;
+            color: #0d471f;
+            display: block;
+            margin-bottom: 1rem;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 0.75rem 2rem;
+            border-radius: 50px; /* Pill shape for a modern, friendly look */
+            text-transform: uppercase;
+            font-weight: bold;
+            font-size: 1rem;
+            letter-spacing: 1px;
+            transition: background-color 0.3s ease;
+            margin-top: 1rem;
+        }
+
+        .btn.primary {
+            background-color: #5aa130; /* Main action color */
+            color: #fff;
+            border: 2px solid #5aa130;
+        }
+
+        .btn.primary:hover {
+            background-color: #38761d;
+            border-color: #38761d;
+        }
+
+        /* 6. Footer */
+        .site-footer {
+            background-color: #0d471f; /* Dark green background */
+            color: #c9dbc1; /* Light contrast text */
+            padding: 2rem 0;
+            font-size: 0.85rem;
+        }
+
+        .footer-inner {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap; 
+            text-align: center;
+        }
+
+        .site-footer p {
+            margin-bottom: 0.5rem;
+        }
+
+        .site-footer a {
+            color: #c9dbc1;
+        }
+
+        .site-footer a:hover {
+            color: #fff;
+        }
+
+        .footer-nav a:not(:last-child) {
+            margin-right: 0.5rem;
+        }
+
+        /* 7. Mobile Responsiveness */
+        @media (max-width: 768px) {
+            .nav-toggle {
+                display: block; /* Show toggle button */
+            }
+
+            .nav {
+                display: none; /* Hide nav by default on mobile */
+                width: 100%;
+                position: absolute;
+                top: 65px; /* Adjust based on header height */
+                left: 0;
+                background-color: #ffffff;
+                box-shadow: 0 5px 5px rgba(0, 0, 0, 0.1);
+                padding: 1rem 0;
+            }
+
+            /* JavaScript will add a class like 'nav-open' to show it */
+            .nav.nav-open {
+                display: block;
+            }
+
+            .nav ul {
+                flex-direction: column; /* Stack links vertically */
+                gap: 0;
+            }
+
+            .nav li {
+                border-bottom: 1px solid #eee;
+            }
+
+            .nav a {
+                display: block;
+                padding: 0.75rem 1.5rem;
+            }
+            
+            .footer-inner {
+                flex-direction: column;
+            }
+        }
+    </style>
+    
+    </head>
+<body>
+    <header class="site-header">
+        <div class="container header-inner">
+            <a class="brand" href="index.html">Vedagreen Biotech</a>
+            <button id="navToggle" class="nav-toggle" aria-label="Toggle navigation">☰</button>
+            <nav id="mainNav" class="nav">
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="products.html">Products</a></li>
+                    <li><a href="services.html">Services</a></li>
+                    <li><a href="sustainability.html">Sustainability</a></li>
+                    <li><a href="gallery.html">Gallery</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="section container">
+            <h2>About Vedagreen</h2>
+            <p class="muted">Vedagreen Biotech Pvt. Ltd. is an agriculture biotechnology company specializing in the production and marketing of **elite tissue culture plants**. With modern labs, trained experts, and a sustainability-driven approach, we deliver plants that offer better yield, uniformity, and resilience.</p>
+            <p><a href="about.html">Learn more about our mission →</a></p>
+        </section>
+        
+        <hr>
+
+        <section class="section alt container">
+            <h2>Our Key Products</h2>
+            <p class="muted">Disease-free, genetically stable planting material for commercial agriculture.</p>
+
+            <div class="product-grid featured-grid">
+                <article class="card product-card">
+                    <img src="assets/images/banana.jpg" alt="Banana — Grand Naine" />
+                    <div class="card-body">
+                        <h3>Banana</h3>
+                        <p class="muted">Grand Naine, Premium TC Varieties</p>
+                    </div>
+                </article>
+
+                <article class="card product-card">
+                    <img src="assets/images/pomegranate.jpg" alt="Pomegranate" />
+                    <div class="card-body">
+                        <h3>Pomegranate</h3>
+                        <p class="muted">True-to-type, Disease Resistant</p>
+                    </div>
+                </article>
+
+                <article class="card product-card">
+                    <img src="assets/images/sugarcane.jpg" alt="Sugarcane" />
+                    <div class="card-body">
+                        <h3>Sugarcane</h3>
+                        <p class="muted">Early to Late Varieties</p>
+                    </div>
+                </article>
+
+                <article class="card product-card">
+                    <img src="assets/images/ginger.jpg" alt="Turmeric & Ginger" />
+                    <div class="card-body">
+                        <h3>Turmeric & Ginger</h3>
+                        <p class="muted">High-Curcumin, Disease-Free</p>
+                    </div>
+                </article>
+
+                <article class="card product-card">
+                    <img src="assets/images/teak.jpg" alt="Teak" />
+                    <div class="card-body">
+                        <h3>Teak</h3>
+                        <p class="muted">Fast-Growing Forestry Variety</p>
+                    </div>
+                </article>
+
+                <article class="card product-card">
+                    <img src="assets/images/ornamental.jpg" alt="Ornamental & Floriculture" />
+                    <div class="card-body">
+                        <h3>Ornamental & Floriculture</h3>
+                        <p class="muted">Indoor & Decorative Species</p>
+                    </div>
+                </article>
+            </div>
+
+            <p class="muted" style="margin-top:1.5rem; text-align: center;"><a href="products.html">View full product list →</a></p>
+        </section>
+        
+        <hr>
+
+        <section class="section container">
+            <h2>Why Choose Us?</h2>
+            <div class="grid-3 why-grid">
+                <article class="card">
+                    <h3>High-Quality, Virus-Free</h3>
+                    <p class="muted">Pathogen & virus testing, genetic fidelity checks and controlled hardening.</p>
+                </article>
+                <article class="card">
+                    <h3>True-to-Type Genetic Stability</h3>
+                    <p class="muted">Consistent performance across seasons and planting sites.</p>
+                </article>
+                <article class="card">
+                    <h3>Large-Scale Production Capacity</h3>
+                    <p class="muted">Timely delivery & reliable distribution for commercial projects.</p>
+                </article>
+                <article class="card">
+                    <h3>Complete Agronomy Support</h3>
+                    <p class="muted">Soil prep, planting, nutrients and field support to maximise returns.</p>
+                </article>
+                <article class="card">
+                    <h3>Sustainable Farming Focus</h3>
+                    <p class="muted">Promoting eco-friendly practices and biodiversity.</p>
+                </article>
+                <article class="card">
+                    <h3>Farmer-Centric Solutions</h3>
+                    <p class="muted">Your success is our priority. Dedicated technical team support.</p>
+                </article>
+            </div>
+        </section>
+        
+        <hr>
+
+        <section class="section alt container">
+            <div class="testimonial card">
+                <p><strong>Partner with us for dependable, future-ready agricultural solutions.</strong></p>
+                <p><a class="btn primary" href="contact.html">Get in Touch</a></p>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container footer-inner">
+            <p>© 2025 Vedagreen Biotech Pvt. Ltd. | Committed to Sustainable Farming</p>
+            <nav class="footer-nav">
+                <a href="index.html">Home</a> · <a href="about.html">About</a> · <a href="products.html">Products</a> · <a href="services.html">Services</a> · <a href="sustainability.html">Sustainability</a> · <a href="contact.html">Contact</a>
+            </nav>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const navToggle = document.getElementById('navToggle');
+            const mainNav = document.getElementById('mainNav');
+
+            navToggle.addEventListener('click', function() {
+                mainNav.classList.toggle('nav-open');
+            });
+        });
+    </script>
+    </body>
+</html>

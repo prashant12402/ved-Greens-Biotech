@@ -1,0 +1,602 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Vedagreen Biotech — Sustainability</title>
+    
+    <style>
+        /* 1. Global & Reset Styles */
+        *, *::before, *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Base Typography & Color Palette */
+        :root {
+            --color-primary: #0d471f; /* Deep Forest Green */
+            --color-secondary: #1a6237; /* Medium Green */
+            --color-accent: #38761d; /* Bright Green Link/Button */
+            --color-light: #e8f0e5; /* Very Light Green/Off-White */
+            --color-text: #333;
+            --color-muted: #6a6a6a;
+            --font-serif: 'Georgia', serif;
+            --font-sans: 'Helvetica Neue', Arial, sans-serif;
+        }
+
+        body {
+            font-family: var(--font-serif); 
+            line-height: 1.6;
+            color: var(--color-text);
+            background-color: #f7f9f7; 
+        }
+
+        /* Headings */
+        h1, h2, h3 {
+            font-family: var(--font-sans);
+            color: var(--color-primary); 
+            margin-bottom: 0.5em;
+            font-weight: 700;
+        }
+
+        h1 {
+            font-size: 2.8rem; 
+            text-align: center;
+            padding-bottom: 1rem;
+            color: var(--color-secondary); 
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        h2 {
+            font-size: 2.0rem; 
+            color: var(--color-primary); 
+            margin-top: 3rem; 
+            border-bottom: 3px solid var(--color-light); 
+            padding-bottom: 0.5rem;
+        }
+        
+        a {
+            color: var(--color-accent);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        a:hover {
+            color: var(--color-secondary);
+            text-decoration: underline;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+
+        .muted {
+            color: var(--color-muted); 
+            margin-bottom: 2rem;
+        }
+
+        .section {
+            padding: 3.5rem 0; 
+        }
+
+        /* 2. Header & Navigation */
+        .site-header {
+            background-color: #ffffff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        .header-inner {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .brand {
+            font-size: 1.75rem; /* Larger brand name */
+            font-weight: 800;
+            color: var(--color-secondary);
+        }
+        .nav ul {
+            list-style: none;
+            display: flex;
+            gap: 1.5rem;
+        }
+        .nav a {
+            font-weight: 600;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            padding: 0.5rem 0;
+        }
+        .nav-toggle {
+            display: none; 
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--color-primary);
+        }
+
+        /* 3. Sustainability Highlight Section */
+        .sustainability-intro {
+            text-align: center;
+            font-size: 1.15rem;
+            max-width: 800px;
+            margin: 0 auto 3rem;
+        }
+        .key-actions-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+        .action-card {
+            background-color: var(--color-light);
+            border-radius: 10px;
+            padding: 1.5rem;
+            text-align: center;
+            border-left: 5px solid var(--color-secondary);
+            transition: transform 0.3s ease;
+        }
+        .action-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 15px rgba(26, 98, 55, 0.15); /* Green shadow */
+        }
+        .action-card p {
+            font-weight: 500;
+            color: var(--color-primary);
+        }
+        .action-card p:first-child {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        /* 4. Product Grid Styling (Premium Look) */
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
+            gap: 2rem; 
+            padding-top: 1.5rem;
+        }
+
+        .product-card {
+            background-color: #ffffff;
+            border: 1px solid #e0e6d8; 
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05); 
+            transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+            text-align: center;
+            display: flex; 
+            flex-direction: column;
+            justify-content: space-between;
+            min-height: 380px; /* Ensure visual consistency */
+        }
+
+        .product-card:hover {
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15); 
+            transform: translateY(-8px); 
+            border-color: var(--color-accent);
+        }
+
+        .product-card img {
+            width: 100%;
+            height: 200px; 
+            object-fit: cover;
+            display: block;
+            border-bottom: 3px solid var(--color-secondary); 
+        }
+        
+        .product-content {
+            padding: 1rem;
+            flex-grow: 1;
+        }
+
+        .product-card h3 {
+            font-size: 1.5rem;
+            margin: 0.5rem 0 0.1rem;
+        }
+
+        .product-card p.muted {
+            font-size: 0.95rem;
+            margin: 0 0 1rem;
+        }
+        
+        .btn-details {
+            background-color: var(--color-accent);
+            color: white;
+            border: none;
+            padding: 1rem 1.5rem;
+            width: 100%; /* Full width button */
+            border-radius: 0 0 12px 12px; 
+            cursor: pointer;
+            font-size: 1.05rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            transition: background-color 0.3s ease;
+        }
+
+        .product-card:hover .btn-details {
+            background-color: var(--color-secondary);
+        }
+        
+        /* 5. Modal Styling (Using previous functional styles) */
+        .modal {
+            display: none; 
+            position: fixed;
+            z-index: 200;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0,0,0,0.6); 
+        }
+
+        .modal.is-open {
+            display: block;
+        }
+
+        .modal-content {
+            background-color: #fefefe;
+            margin: 10% auto; 
+            padding: 30px;
+            border: 1px solid var(--color-accent);
+            width: 90%;
+            max-width: 650px;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        }
+        
+        .modal-content h3 {
+            color: var(--color-primary);
+            font-size: 2rem;
+            margin-top: 0;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--color-light);
+        }
+        
+        .modal-content ul {
+            list-style: none;
+            padding-left: 0;
+            margin-top: 15px;
+        }
+        
+        .modal-content li {
+            position: relative;
+            padding-left: 20px;
+            margin-bottom: 8px;
+            font-size: 1.05rem;
+        }
+
+        .modal-content li::before {
+            content: '✅';
+            position: absolute;
+            left: 0;
+        }
+
+        .modal-close {
+            color: #aaa;
+            float: right;
+            font-size: 32px;
+            font-weight: bold;
+            line-height: 1;
+        }
+
+        .modal-close:hover {
+            color: var(--color-primary);
+            cursor: pointer;
+        }
+
+
+        /* 6. Footer */
+        .site-footer {
+            background-color: var(--color-primary);
+            color: #c9dbc1;
+            padding: 2rem 0; 
+            font-size: 0.9rem;
+            margin-top: 4rem; 
+            text-align: center;
+        }
+        .site-footer a {
+            color: #ffffff;
+        }
+        
+        /* 7. Mobile Responsiveness */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.2rem;
+            }
+            .nav-toggle {
+                display: block;
+            }
+            .nav {
+                display: none; 
+                width: 100%;
+                position: absolute;
+                top: 75px;
+                left: 0;
+                background-color: #ffffff;
+                box-shadow: 0 5px 5px rgba(0, 0, 0, 0.1);
+                padding: 0;
+            }
+            .nav.nav-open {
+                display: block;
+            }
+            .nav ul {
+                flex-direction: column;
+                gap: 0;
+            }
+            .nav li {
+                border-bottom: 1px solid #eee;
+            }
+            .nav a {
+                display: block;
+                padding: 0.75rem 1.5rem;
+            }
+            .products-grid {
+                grid-template-columns: 1fr;
+            }
+            .product-card img {
+                height: 180px;
+            }
+        }
+    </style>
+    </head>
+<body>
+    <header class="site-header">
+        <div class="container header-inner">
+            <a class="brand" href="index.html">Vedagreen Biotech</a>
+            <button id="navToggle" class="nav-toggle" aria-label="Toggle navigation">☰</button>
+            <nav id="mainNav" class="nav">
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="products.html">Products</a></li>
+                    <li><a href="services.html">Services</a></li>
+                    <li><a href="sustainability.html">Sustainability</a></li>
+                    <li><a href="gallery.html">Gallery</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container section">
+        <h1>Sustainability & Our Plant Collection 🌎</h1>
+        <p class="sustainability-intro">We reduce chemical use through pathogen-free plants, conserve water and energy in production, and promote biodiversity with forestry species.</p>
+
+        <h2>Key Actions ♻️</h2>
+        <div class="key-actions-grid">
+            <div class="action-card">
+                <p>🦠</p>
+                <p>Produce **disease-free plants** to lower pesticide needs.</p>
+            </div>
+            <div class="action-card">
+                <p>💧</p>
+                <p>**Efficient hardening** to reduce losses and conserve water.</p>
+            </div>
+            <div class="action-card">
+                <p>🌳</p>
+                <p>Promote **agroforestry species** like teak and sandalwood.</p>
+            </div>
+        </div>
+
+        <h2 style="margin-top: 2rem;">Targets 🎯</h2>
+        <p style="font-size: 1.1rem; text-align: center; font-weight: bold; color: var(--color-accent); margin-top: 1rem;">
+            Improve resource efficiency by **20%** and expand biodiversity lines by **30%** by 2026.
+        </p>
+
+        <hr style="margin:4rem 0 2rem;border:none;border-top:1px solid #e6e9ee;" />
+
+        <h2>Our Featured Plant Catalogue 🌱</h2>
+        <p class="muted" style="text-align: center;">High-quality tissue culture and horticulture plants — click "View Details" to learn more.</p>
+
+        <div class="products-grid">
+            <div class="product-card">
+                <img src="assets/images/alocasia.jpg" alt="Alocasia" />
+                <div class="product-content">
+                    <h3>Alocasia</h3>
+                    <p class="muted">Tropical foliage plant</p>
+                </div>
+                <button class="btn-details" data-product="alocasia">View Details</button>
+            </div>
+
+            <div class="product-card">
+                <img src="assets/images/anthurium.jpg" alt="Anthurium" />
+                <div class="product-content">
+                    <h3>Anthurium</h3>
+                    <p class="muted">Ornamental flowering plant</p>
+                </div>
+                <button class="btn-details" data-product="anthurium">View Details</button>
+            </div>
+
+            <div class="product-card">
+                <img src="assets/images/banana.jpg" alt="Banana" />
+                <div class="product-content">
+                    <h3>Banana</h3>
+                    <p class="muted">High-yield tissue culture</p>
+                </div>
+                <button class="btn-details" data-product="banana">View Details</button>
+            </div>
+
+            <div class="product-card">
+                <img src="assets/images/bamboo.jpg" alt="Bamboo" />
+                <div class="product-content">
+                    <h3>Bamboo</h3>
+                    <p class="muted">Fast-growing forestry species</p>
+                </div>
+                <button class="btn-details" data-product="bamboo">View Details</button>
+            </div>
+
+            <div class="product-card">
+                <img src="assets/images/calathea.jpg" alt="Calathea" />
+                <div class="product-content">
+                    <h3>Calathea</h3>
+                    <p class="muted">Indoor decorative foliage</p>
+                </div>
+                <button class="btn-details" data-product="calathea">View Details</button>
+            </div>
+
+            <div class="product-card">
+                <img src="assets/images/calla-lily.jpg" alt="Calla Lily" />
+                <div class="product-content">
+                    <h3>Calla Lily</h3>
+                    <p class="muted">Premium flowering variety</p>
+                </div>
+                <button class="btn-details" data-product="calla-lily">View Details</button>
+            </div>
+
+            <div class="product-card">
+                <img src="assets/images/cardamom.jpg" alt="Cardamom" />
+                <div class="product-content">
+                    <h3>Cardamom</h3>
+                    <p class="muted">Commercial spice crop</p>
+                </div>
+                <button class="btn-details" data-product="cardamom">View Details</button>
+            </div>
+
+            <div class="product-card">
+                <img src="assets/images/cordyline.jpg" alt="Cordyline" />
+                <div class="product-content">
+                    <h3>Cordyline</h3>
+                    <p class="muted">Colorful foliage accent</p>
+                </div>
+                <button class="btn-details" data-product="cordyline">View Details</button>
+            </div>
+
+            <div class="product-card">
+                <img src="assets/images/delphinium.jpg" alt="Delphinium" />
+                <div class="product-content">
+                    <h3>Delphinium</h3>
+                    <p class="muted">Tall flowering perennial</p>
+                </div>
+                <button class="btn-details" data-product="delphinium">View Details</button>
+            </div>
+
+            <div class="product-card">
+                <img src="assets/images/ficus.jpg" alt="Ficus" />
+                <div class="product-content">
+                    <h3>Ficus</h3>
+                    <p class="muted">Indoor tree-form plant</p>
+                </div>
+                <button class="btn-details" data-product="ficus">View Details</button>
+            </div>
+
+            <div class="product-card">
+                <img src="assets/images/gentiana.jpg" alt="Gentiana" />
+                <div class="product-content">
+                    <h3>Gentiana</h3>
+                    <p class="muted">Alpine blue flowering</p>
+                </div>
+                <button class="btn-details" data-product="gentiana">View Details</button>
+            </div>
+
+            <div class="product-card">
+                <img src="assets/images/ginger.jpg" alt="Ginger" />
+                <div class="product-content">
+                    <h3>Ginger</h3>
+                    <p class="muted">Disease-free rhizomes</p>
+                </div>
+                <button class="btn-details" data-product="ginger">View Details</button>
+            </div>
+        </div>
+    </main>
+
+    <div id="productModal" class="modal">
+        <div class="modal-content">
+            <span class="modal-close">&times;</span>
+            <div id="modalBody"></div>
+        </div>
+    </div>
+
+    <footer class="site-footer">
+        <div class="container footer-inner">
+            <p>© 2025 Vedagreen Biotech Pvt. Ltd. | **Empowering Sustainable Agriculture**</p>
+        </div>
+    </footer>
+
+    <script>
+        const productData = {
+            'alocasia': { title: 'Alocasia (Tropical Foliage)', description: 'High-value indoor plant known for its large, dramatic leaves. Perfect for high-end landscaping and retail. Our tissue culture ensures premium varieties.', features: ['Large, unique, and dramatic leaf structure', 'Ideal for interior design and high-end retail', 'Tissue culture ensures genetic uniformity and health'] },
+            'anthurium': { title: 'Anthurium (Ornamental Flowering)', description: 'Produces long-lasting, waxy, heart-shaped flowers. Excellent for cut flower and potted plant markets due to consistent bloom cycles.', features: ['Vibrant, glossy, and long-lasting flowers', 'Consistent flowering cycles for high commercial yield', 'Suitable for both cut flowers and potted plant sales'] },
+            'banana': { title: 'Banana (High-Yield Tissue Culture)', description: 'Virus-free Grand Naine (G9) clones. Ensures synchronous harvesting, better bunch weight, and faster maturity compared to traditional suckers.', features: ['Virus-free and high yielding stock guaranteed', 'Uniform growth and synchronous bunching cycle', 'Faster maturity and stronger root system'] },
+            'bamboo': { title: 'Bamboo (Fast-Growing Forestry)', description: 'Genetically superior clones known for rapid growth and high carbon sequestration. Ideal for agroforestry, pulp, and construction materials.', features: ['Rapid growth rate (fast maturation)', 'High CO2 absorption for environmental benefits', 'Excellent choice for sustainable timber and agroforestry'] },
+            'calathea': { title: 'Calathea (Indoor Decorative Foliage)', description: 'Known for its stunning, patterned leaves that move throughout the day. Our TC plants are highly resistant to common pests.', features: ['Stunning patterned and colorful foliage', 'High resistance to common nursery pests', 'Ideal for indoor plant collections and nurseries'] },
+            'calla-lily': { title: 'Calla Lily (Premium Flowering Variety)', description: 'Prized for its elegant, trumpet-shaped flowers. We provide a range of vibrant colors for the premium cut flower market.', features: ['Elegant, trumpet-shaped blooms', 'Wide range of vibrant colors available', 'High demand in premium cut flower industry'] },
+            'cardamom': { title: 'Cardamom (Commercial Spice Crop)', description: 'True-to-type, disease-free cardamom plantlets. Ensures maximum yield of high-quality, aromatic pods for the spice market.', features: ['True-to-type and disease-free plantlets', 'Ensures uniform, high-quality aromatic pods', 'Maximizes yield in commercial spice plantations'] },
+            'cordyline': { title: 'Cordyline (Colorful Foliage Accent)', description: 'Known for its sword-shaped, colorful leaves, used widely in landscaping and container planting for visual accent and contrast.', features: ['Vibrant, sword-shaped leaves for visual impact', 'Excellent for container gardening and landscaping', 'Drought-tolerant and relatively low maintenance'] },
+            'delphinium': { title: 'Delphinium (Tall Flowering Perennial)', description: 'Produces striking tall spikes of flowers, popular in cottage gardens and for high-end cut flower arrangements.', features: ['Striking tall flower spikes', 'Ideal for background planting and borders', 'Popular choice for professional florists'] },
+            'ficus': { title: 'Ficus (Indoor Tree-Form Plant)', description: 'Reliable indoor tree-form plant that adds structure to any space. Our TC plants are vigorous and disease-resistant for quick establishment.', features: ['Vigorous growth and quick establishment', 'Excellent structural element for large interiors', 'Disease-resistant and strong root systems'] },
+            'gentiana': { title: 'Gentiana (Alpine Blue Flowering)', description: 'Known for its intense blue, trumpet-shaped flowers. A high-value ornamental plant perfect for rock gardens and specialized nurseries.', features: ['Rare and intense blue flower coloration', 'Prized by collectors and alpine nurseries', 'Tissue culture ensures reliable propagation'] },
+            'ginger': { title: 'Ginger (Disease-Free Rhizomes)', description: 'Certified pathogen-free rhizomes for superior health and yield. Eliminates the risk of common soil-borne diseases that plague ginger cultivation.', features: ['Certified disease-free rhizome production', 'Eliminates soil-borne pathogen risks', 'Higher yield potential and uniform crop'] }
+        };
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const modal = document.getElementById('productModal');
+            const modalBody = document.getElementById('modalBody');
+            const closeButton = document.querySelector('.modal-close');
+            const detailButtons = document.querySelectorAll('.btn-details');
+            const navToggle = document.getElementById('navToggle');
+            const mainNav = document.getElementById('mainNav');
+
+            // Mobile Nav Logic
+            if (navToggle && mainNav) {
+                navToggle.addEventListener('click', function() {
+                    mainNav.classList.toggle('nav-open');
+                });
+            }
+
+            // Modal Content Generation
+            function openModal(productId) {
+                const data = productData[productId];
+                if (!data) return; 
+
+                let htmlContent = `<h3>${data.title}</h3>`;
+                htmlContent += `<p class="muted" style="font-size: 1.1rem; color: #333; margin-top: 10px;">${data.description}</p>`;
+                htmlContent += `<h4 style="color: var(--color-accent); margin-top: 20px; font-family: var(--font-sans);">Key Advantages:</h4>`;
+                htmlContent += `<ul>`;
+                data.features.forEach(feature => {
+                    htmlContent += `<li>${feature}</li>`;
+                });
+                htmlContent += `</ul>`;
+
+                modalBody.innerHTML = htmlContent;
+                modal.classList.add('is-open');
+                document.body.style.overflow = 'hidden'; 
+            }
+            
+            // Modal Closing Logic
+            function closeModal() {
+                modal.classList.remove('is-open');
+                document.body.style.overflow = ''; 
+            }
+
+            detailButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const productId = this.getAttribute('data-product');
+                    openModal(productId);
+                });
+            });
+
+            closeButton.addEventListener('click', closeModal);
+
+            window.addEventListener('click', function(event) {
+                if (event.target === modal) {
+                    closeModal();
+                }
+            });
+            
+            document.addEventListener('keydown', function(event) {
+                if (event.key === 'Escape' && modal.classList.contains('is-open')) {
+                    closeModal();
+                }
+            });
+        });
+    </script>
+</body>
+</html>

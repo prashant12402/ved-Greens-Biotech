@@ -1,0 +1,292 @@
+/* Basic responsive stylesheet for Vedagreen Biotech site */
+
+:root{
+	--bg:#f7f8f9;
+	--card:#ffffff;
+	--accent:#2f8f3f;
+	--muted:#6b7280;
+	--text:#1f2937;
+	--radius:8px;
+	--container:1100px;
+	--gap:1.25rem;
+	font-size:16px;
+}
+
+*{box-sizing:border-box}
+html,body{height:100%}
+body{
+	margin:0;
+	font-family:system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial;
+	color:var(--text);
+	background:var(--bg);
+	line-height:1.5;
+	-webkit-font-smoothing:antialiased;
+	-moz-osx-font-smoothing:grayscale;
+}
+
+/* Container */
+.container{
+	max-width:var(--container);
+	margin:0 auto;
+	padding:1.25rem;
+}
+
+/* Header */
+.site-header{
+	background:#fff;
+	border-bottom:1px solid #e6e9ee;
+	position:sticky;
+	top:0;
+	z-index:40;
+}
+.header-inner{
+	display:flex;
+	align-items:center;
+	justify-content:space-between;
+	gap:1rem;
+}
+.brand{
+	font-weight:700;
+	color:var(--accent);
+	text-decoration:none;
+	font-size:1.125rem;
+}
+.nav{display:block}
+.nav ul{list-style:none;margin:0;padding:0;display:flex;gap:1rem;align-items:center}
+.nav a{color:var(--text);text-decoration:none;padding:.5rem .6rem;border-radius:6px}
+.nav a:hover{background:#f0f5f0;color:var(--accent)}
+
+/* Mobile nav toggle */
+.nav-toggle{
+	display:none;
+	background:transparent;
+	border:0;
+	font-size:1.25rem;
+}
+
+/* Hero */
+.hero{padding:2.5rem 0;background:linear-gradient(180deg,#f5faf5 0%,#ffffff 100%)}
+.hero-inner{display:grid;grid-template-columns:1fr 460px;gap:2rem;align-items:center}
+.hero-copy h1{margin:0 0 .5rem;font-size:2rem}
+.lead{color:var(--muted);margin-bottom:1rem}
+.hero-media img{width:100%;height:auto;border-radius:10px;display:block;box-shadow:0 6px 20px rgba(31,41,55,0.06)}
+
+/* Enhanced hero */
+.hero-large{padding:3.25rem 0}
+.hero-large .hero-inner{
+	display:grid;
+	grid-template-columns: 1fr 520px;
+	align-items:center;
+	gap:2rem;
+}
+.hero-large .eyebrow{
+	font-weight:700;
+	color:var(--accent);
+	margin-bottom:.5rem;
+	letter-spacing:.6px;
+}
+.hero-large h1{font-size:2.1rem;margin:0 0 .5rem;line-height:1.12}
+.hero-large .lead{font-size:1.05rem;color:var(--muted)}
+.hero-ctas{margin-top:1rem;display:flex;gap:.75rem;align-items:center}
+.btn-lg{padding:.8rem 1.05rem;font-size:1rem;border-radius:10px}
+.btn.primary{background:linear-gradient(90deg,var(--accent),#1f7a3a);box-shadow:0 10px 30px rgba(31,128,63,0.12);color:#fff;border:0}
+.btn.ghost{background:transparent;border:1px solid rgba(31,41,55,0.06);color:var(--text)}
+
+/* trust list */
+.trust-list{display:flex;gap:1rem;margin-top:1rem;padding:0;list-style:none}
+.trust-list li{background:#fff;padding:.4rem .6rem;border-radius:8px;box-shadow:0 6px 18px rgba(0,0,0,0.04);font-weight:600;color:var(--muted)}
+
+/* Buttons */
+.btn{display:inline-block;padding:.6rem 1rem;border-radius:8px;background:transparent;border:1px solid #d1d5db;color:var(--text);text-decoration:none}
+.btn.primary{background:var(--accent);color:#fff;border-color:transparent}
+.cta .btn{margin-right:.5rem}
+
+/* Sections */
+.section{padding:2rem 0}
+.section.alt{background:#fff;border-top:1px solid #eef2f7}
+h2{margin-top:0}
+.muted{color:var(--muted)}
+
+/* Grids */
+.grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--gap)}
+.grid-2{display:grid;grid-template-columns:repeat(2,1fr);gap:var(--gap)}
+.product-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1rem;margin-top:1rem}
+.card{background:var(--card);padding:1rem;border-radius:var(--radius);box-shadow:0 4px 18px rgba(31,41,55,0.04)}
+.card img{width:100%;height:140px;object-fit:cover;border-radius:6px;margin-bottom:.6rem}
+
+/* Product Grid */
+.products-grid {
+	display: grid;
+	grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+	gap: 1.5rem;
+	margin-top: 2rem;
+}
+
+.product-card {
+	background: var(--card);
+	border-radius: var(--radius);
+	overflow: hidden;
+	box-shadow: 0 4px 18px rgba(31, 41, 55, 0.08);
+	transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.product-card:hover {
+	transform: translateY(-4px);
+	box-shadow: 0 8px 24px rgba(31, 41, 55, 0.12);
+}
+
+.product-card img {
+	width: 100%;
+	height: 160px;
+	object-fit: cover;
+	display: block;
+}
+
+.product-card h3 {
+	margin: 0.8rem 1rem 0.3rem;
+	font-size: 1rem;
+	color: var(--text);
+}
+
+.product-card p {
+	margin: 0 1rem;
+	font-size: 0.9rem;
+}
+
+.btn-details {
+	display: block;
+	width: calc(100% - 2rem);
+	margin: 0.8rem 1rem 1rem;
+	padding: 0.5rem;
+	background: var(--accent);
+	color: #fff;
+	border: none;
+	border-radius: 6px;
+	cursor: pointer;
+	font-size: 0.95rem;
+	transition: background 0.2s ease;
+}
+
+.btn-details:hover {
+	background: #216d2f;
+}
+
+/* Services & contact */
+.service-card{background:var(--card);padding:1rem;border-radius:8px;box-shadow:0 6px 18px rgba(15,23,42,0.04)}
+.contact-grid{display:grid;grid-template-columns:1fr 320px;gap:1.25rem;align-items:start}
+.contact-form{display:flex;flex-direction:column;gap:.5rem}
+.contact-form label{display:flex;flex-direction:column;font-size:.95rem;color:var(--muted)}
+.contact-form input, .contact-form textarea{
+	padding:.6rem;border:1px solid #e6e9ee;border-radius:6px;font-size:1rem;
+}
+.form-msg{margin-top:.5rem;color:var(--accent)}
+
+/* Gallery */
+.gallery-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:0.5rem}
+.gallery-grid img{width:100%;height:160px;object-fit:cover;border-radius:6px}
+
+/* Footer */
+.site-footer{background:#0f1724;color:#fff;padding:1rem 0;margin-top:2rem}
+.footer-inner{display:flex;flex-direction:column;gap:.5rem;align-items:center}
+.footer-nav a{color:#cbd5e1;text-decoration:none;margin:0 .35rem}
+
+/* Modal */
+.modal {
+	display: none;
+	position: fixed;
+	z-index: 100;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	background-color: rgba(0, 0, 0, 0.5);
+	animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+	from { opacity: 0; }
+	to { opacity: 1; }
+}
+
+.modal.show {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.modal-content {
+	background: var(--card);
+	padding: 2rem;
+	border-radius: 10px;
+	max-width: 600px;
+	width: 90%;
+	max-height: 80vh;
+	overflow-y: auto;
+	box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+	position: relative;
+}
+
+.modal-close {
+	position: absolute;
+	right: 1.5rem;
+	top: 1rem;
+	font-size: 1.8rem;
+	font-weight: bold;
+	color: var(--muted);
+	cursor: pointer;
+	transition: color 0.2s ease;
+}
+
+.modal-close:hover {
+	color: var(--text);
+}
+
+#modalBody h2 {
+	margin-top: 0;
+	color: var(--accent);
+}
+
+#modalBody img {
+	width: 100%;
+	max-height: 300px;
+	object-fit: cover;
+	border-radius: 8px;
+	margin-bottom: 1rem;
+}
+
+#modalBody ul {
+	list-style-position: inside;
+	line-height: 1.8;
+}
+
+/* Responsive */
+@media (max-width:980px){
+	.hero-inner{grid-template-columns:1fr}
+	.header-inner{gap:.5rem}
+	.nav{position:absolute;right:1.25rem;top:64px;background:#fff;padding:1rem;border-radius:8px;box-shadow:0 12px 30px rgba(15,23,42,.08);display:none}
+	.nav.open{display:block}
+	.nav-toggle{display:block}
+	.grid-3{grid-template-columns:1fr}
+	.grid-2{grid-template-columns:1fr}
+	.contact-grid{grid-template-columns:1fr}
+	.hero-copy h1{font-size:1.5rem}
+	.hero-large .hero-inner{grid-template-columns:1fr}
+	.hero-media img{height:260px}
+	.contact-cards{grid-template-columns:1fr}
+	.hero-large h1{font-size:1.5rem}
+}
+
+/* Small widths */
+@media (max-width:480px){
+	.container{padding:.75rem}
+	.card img{height:120px}
+	.gallery-grid img{height:120px}
+	.products-grid {
+		grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+		gap: 1rem;
+	}
+
+	.modal-content {
+		padding: 1.5rem;
+	}
+}

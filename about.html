@@ -1,0 +1,344 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Vedagreen Biotech — About Us</title>
+    
+    <style>
+        /* 1. Global & Reset Styles */
+        *, *::before, *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Base Typography */
+        body {
+            font-family: 'Georgia', serif; /* A classic, trustworthy serif font */
+            line-height: 1.6;
+            color: #333; /* Dark gray for prose */
+            background-color: #f7f9f7; /* Off-white/Creamy background */
+        }
+
+        /* Headings - Use a clean, modern sans-serif for contrast and modernity */
+        h1, h2, h3 {
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            color: #0d471f; /* Deep Forest Green for emphasis */
+            margin-bottom: 0.5em;
+            font-weight: 700;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            text-align: center;
+            padding-bottom: 1.5rem;
+        }
+
+        /* Links */
+        a {
+            color: #38761d; /* Vibrant Green for links */
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        a:hover {
+            color: #5aa130;
+            text-decoration: underline;
+        }
+
+        .container {
+            max-width: 1000px; /* Slightly narrower for 'About' content focus */
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+
+        .muted {
+            color: #6a6a6a; /* Lighter gray for secondary text */
+        }
+
+        .section {
+            padding: 2.5rem 0; /* Slightly tighter padding for flow */
+            border-bottom: 1px solid #e0e9e0; /* Subtle section dividers */
+        }
+        
+        .section:last-of-type {
+            border-bottom: none;
+        }
+
+        .alt {
+            background-color: #e8f0e5; /* Light green/gray for alternating sections (Vision/Values) */
+            padding: 3rem 1.5rem;
+            margin: 2rem 0; /* Add margin to break the flow */
+            border-radius: 8px;
+            border-left: 5px solid #38761d;
+        }
+        
+        .alt h2 {
+            color: #1a6237;
+        }
+
+        /* 2. Header & Navigation Styling */
+        .site-header {
+            background-color: #ffffff;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-inner {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .brand {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #1a6237;
+        }
+
+        .nav ul {
+            list-style: none;
+            display: flex;
+            gap: 1.5rem;
+        }
+
+        .nav a {
+            font-weight: 500;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            padding: 0.25rem 0;
+        }
+
+        .nav-toggle {
+            display: none; 
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: #1a6237;
+        }
+
+        /* 3. Mission List Styling */
+        main ul {
+            list-style: none;
+            padding-left: 0;
+            margin-top: 1rem;
+        }
+
+        main li {
+            position: relative;
+            padding-left: 1.5rem;
+            margin-bottom: 0.75rem;
+        }
+
+        main li::before {
+            content: '✓'; /* Custom bullet point (tick) */
+            color: #5aa130;
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+        }
+        
+        /* 4. Values Grid */
+        .grid-2 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .card {
+            padding: 1.5rem;
+            background-color: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+            transition: box-shadow 0.3s ease;
+        }
+        
+        .card:hover {
+             box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .card h3 {
+            font-size: 1.2rem;
+            margin-bottom: 0.25rem;
+        }
+
+        /* 5. Footer */
+        .site-footer {
+            background-color: #0d471f;
+            color: #c9dbc1;
+            padding: 2rem 0;
+            font-size: 0.85rem;
+            margin-top: 3rem;
+        }
+
+        .footer-inner {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap; 
+            text-align: center;
+        }
+
+        .site-footer p {
+            margin-bottom: 0.5rem;
+        }
+
+        .site-footer a {
+            color: #c9dbc1;
+        }
+
+        .site-footer a:hover {
+            color: #fff;
+        }
+
+        .footer-nav a:not(:last-child) {
+            margin-right: 0.5rem;
+        }
+
+        /* 6. Mobile Responsiveness */
+        @media (max-width: 768px) {
+            .nav-toggle {
+                display: block;
+            }
+
+            .nav {
+                display: none; 
+                width: 100%;
+                position: absolute;
+                top: 65px;
+                left: 0;
+                background-color: #ffffff;
+                box-shadow: 0 5px 5px rgba(0, 0, 0, 0.1);
+                padding: 1rem 0;
+            }
+
+            .nav.nav-open {
+                display: block;
+            }
+
+            .nav ul {
+                flex-direction: column;
+                gap: 0;
+            }
+
+            .nav li {
+                border-bottom: 1px solid #eee;
+            }
+
+            .nav a {
+                display: block;
+                padding: 0.75rem 1.5rem;
+            }
+            
+            .footer-inner {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="site-header">
+        <div class="container header-inner">
+            <a class="brand" href="index.html">Vedagreen Biotech</a>
+            <button id="navToggle" class="nav-toggle" aria-label="Toggle navigation">☰</button>
+            <nav id="mainNav" class="nav">
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="products.html">Products</a></li>
+                    <li><a href="services.html">Services</a></li>
+                    <li><a href="sustainability.html">Sustainability</a></li>
+                    <li><a href="gallery.html">Gallery</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container">
+        <h1>About Vedagreen Biotech 🌱</h1>
+        
+        <hr>
+
+        <section class="section">
+            <h2>Who We Are</h2>
+            <p>Vedagreen Biotech Pvt. Ltd. is a pioneering **plant tissue culture company**, dedicated to producing superior-quality, **disease-free planting material** for commercial agriculture. Our mission is to bring scientific advancements directly to the field, giving farmers the tools they need for higher productivity and sustainable growth. We combine cutting-edge laboratory techniques with practical agronomy support to ensure the success of every plantation.</p>
+        </section>
+
+        <section class="section">
+            <h2>Our Journey</h2>
+            <p>Founded with a vision to modernize agriculture through **biotechnology**, Vedagreen has evolved into a trusted provider known for quality, innovation, and farmer-focused values. Our state-of-the-art labs and team of trained experts ensure genetic fidelity and vitality in every plantlet, securing better returns for our farming partners.</p>
+        </section>
+
+        <section class="alt">
+            <h2>Our Vision</h2>
+            <p>To lead the future of **sustainable agriculture** by providing high-performance tissue culture plants that **improve productivity** while protecting the environment. We strive to be the most dependable partner for commercial farmers seeking consistent, high-yield results.</p>
+        </section>
+
+        <section class="section">
+            <h2>Our Mission</h2>
+            <ul>
+                <li>To deliver **disease-free, genetically uniform** planting material.</li>
+                <li>To promote **sustainable and eco-friendly** agricultural practices.</li>
+                <li>To support farmers with **technical guidance, training, and field support**.</li>
+                <li>To continuously **innovate** in plant biotechnology and product development.</li>
+            </ul>
+        </section>
+
+        <section class="alt">
+            <h2>Our Core Values</h2>
+            <div class="grid-2">
+                <div class="card">
+                    <h3>🌱 Integrity</h3>
+                    <p class="muted">Honest, transparent operations in all dealings. Building trust with every stakeholder.</p>
+                </div>
+                <div class="card">
+                    <h3>💡 Innovation</h3>
+                    <p class="muted">Advancing agriculture through science and technology. Constantly improving our processes and products.</p>
+                </div>
+                <div class="card">
+                    <h3>🔬 Quality Assurance</h3>
+                    <p class="muted">Maintaining the highest standards in every plant we produce, backed by rigorous lab testing.</p>
+                </div>
+                <div class="card">
+                    <h3>🌍 Sustainability</h3>
+                    <p class="muted">Agriculture in harmony with nature, promoting water efficiency and biodiversity.</p>
+                </div>
+                <div class="card">
+                    <h3>🤝 Farmer-Centricity</h3>
+                    <p class="muted">Your success is our priority. Providing dedicated technical team support.</p>
+                </div>
+                <div class="card">
+                    <h3>📈 Excellence</h3>
+                    <p class="muted">Striving for continuous improvement in plant genetics and business operations.</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container footer-inner">
+            <p>© 2025 Vedagreen Biotech Pvt. Ltd.</p>
+            <nav class="footer-nav">
+                <a href="index.html">Home</a> · <a href="about.html">About</a> · <a href="products.html">Products</a>
+            </nav>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const navToggle = document.getElementById('navToggle');
+            const mainNav = document.getElementById('mainNav');
+
+            navToggle.addEventListener('click', function() {
+                mainNav.classList.toggle('nav-open');
+            });
+        });
+    </script>
+</body>
+</html>

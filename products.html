@@ -1,0 +1,417 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Vedagreen Biotech — Products</title>
+    
+    <!-- 🌿 EMBEDDED CSS STYLES 🌿 -->
+    <style>
+        /* 1. Global & Reset Styles */
+        *, *::before, *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Base Typography */
+        body {
+            font-family: 'Georgia', serif; 
+            line-height: 1.6;
+            color: #333;
+            background-color: #f7f9f7; 
+        }
+
+        /* Headings */
+        h1, h2, h3 {
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            color: #0d471f; /* Deep Forest Green */
+            margin-bottom: 0.5em;
+            font-weight: 700;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            text-align: center;
+            padding-bottom: 0.5rem;
+        }
+
+        /* Links */
+        a {
+            color: #38761d;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        a:hover {
+            color: #5aa130;
+            text-decoration: underline;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+
+        .muted {
+            color: #6a6a6a; 
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .section {
+            padding: 2.5rem 0;
+            border-bottom: 1px solid #e0e9e0;
+        }
+        
+        /* Product Sections Styling */
+        .product-section {
+            padding: 2rem;
+            border-radius: 8px;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.03);
+            transition: transform 0.2s;
+        }
+
+        .product-section:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+        }
+
+        .product-section.alt {
+            background-color: #e8f0e5; /* Light green/gray for alternating sections */
+        }
+        
+        .product-section:not(.alt) {
+            background-color: #ffffff;
+        }
+
+        .product-section h2 {
+            font-size: 1.8rem;
+            margin-top: 0;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .product-section h2 .icon {
+            font-size: 1.5em;
+            color: #5aa130;
+        }
+
+        /* List Styling */
+        .product-section ul {
+            list-style: none;
+            padding-left: 0;
+            margin-top: 0.5rem;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 0.5rem 1.5rem;
+        }
+
+        .product-section li {
+            position: relative;
+            padding-left: 1.5rem;
+            font-size: 1rem;
+            color: #444;
+        }
+
+        .product-section li::before {
+            content: '🌿'; /* Custom plant emoji bullet */
+            position: absolute;
+            left: 0;
+            font-size: 0.8rem;
+            color: #5aa130;
+        }
+        
+        /* Quality Promise Section */
+        .quality-promise {
+            text-align: center;
+            padding: 3rem 0;
+            background-color: #0d471f;
+            color: #ffffff;
+            border-radius: 8px;
+            margin-top: 3rem;
+        }
+        
+        .quality-promise h2 {
+            color: #a3c98d;
+            margin-bottom: 1rem;
+        }
+        
+        .quality-promise ul {
+            list-style: none;
+            padding: 0;
+            margin-top: 1rem;
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+        
+        .quality-promise li {
+            font-size: 1.1rem;
+            font-weight: 500;
+        }
+
+        /* 2. Header & Navigation Styling (Reused from previous files) */
+        .site-header {
+            background-color: #ffffff;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-inner {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .brand {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #1a6237;
+        }
+
+        .nav ul {
+            list-style: none;
+            display: flex;
+            gap: 1.5rem;
+        }
+
+        .nav a {
+            font-weight: 500;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            padding: 0.25rem 0;
+        }
+
+        .nav-toggle {
+            display: none; 
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: #1a6237;
+        }
+
+        /* 3. Footer (Reused from previous files) */
+        .site-footer {
+            background-color: #0d471f;
+            color: #c9dbc1;
+            padding: 2rem 0;
+            font-size: 0.85rem;
+            margin-top: 3rem;
+        }
+
+        .footer-inner {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap; 
+            text-align: center;
+        }
+
+        .site-footer p {
+            margin-bottom: 0.5rem;
+        }
+
+        .site-footer a {
+            color: #c9dbc1;
+        }
+
+        .site-footer a:hover {
+            color: #fff;
+        }
+
+        .footer-nav a:not(:last-child) {
+            margin-right: 0.5rem;
+        }
+
+        /* 4. Mobile Responsiveness */
+        @media (max-width: 768px) {
+            .nav-toggle {
+                display: block;
+            }
+
+            .nav {
+                display: none; 
+                width: 100%;
+                position: absolute;
+                top: 65px;
+                left: 0;
+                background-color: #ffffff;
+                box-shadow: 0 5px 5px rgba(0, 0, 0, 0.1);
+                padding: 1rem 0;
+            }
+
+            .nav.nav-open {
+                display: block;
+            }
+
+            .nav ul {
+                flex-direction: column;
+                gap: 0;
+            }
+
+            .nav li {
+                border-bottom: 1px solid #eee;
+            }
+
+            .nav a {
+                display: block;
+                padding: 0.75rem 1.5rem;
+            }
+            
+            .footer-inner {
+                flex-direction: column;
+            }
+            
+            .product-section ul {
+                grid-template-columns: 1fr;
+            }
+            
+            .quality-promise ul {
+                flex-direction: column;
+                gap: 0.5rem;
+                align-items: flex-start;
+                padding-left: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="site-header">
+        <div class="container header-inner">
+            <a class="brand" href="index.html">Vedagreen Biotech</a>
+            <button id="navToggle" class="nav-toggle" aria-label="Toggle navigation">☰</button>
+            <nav id="mainNav" class="nav">
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="products.html">Products</a></li>
+                    <li><a href="services.html">Services</a></li>
+                    <li><a href="sustainability.html">Sustainability</a></li>
+                    <li><a href="gallery.html">Gallery</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container">
+        <h1>Our Tissue Culture Plant Portfolio</h1>
+        <p class="muted">Disease-free, genetically stable, and high-yielding planting material for commercial agriculture, backed by science.</p>
+
+        <!-- Product 1: Banana -->
+        <section class="product-section">
+            <h2><span class="icon">🍌</span> 1. Banana Tissue Culture Plants</h2>
+            <p><strong>Varieties:</strong> Grand Naine (G9), G10, Elite Clones. Our banana plantlets ensure synchronous harvesting and superior fruit quality.</p>
+            <ul>
+                <li>Virus-free and high yielding stock</li>
+                <li>Uniform growth and bunching cycle</li>
+                <li>Faster maturity compared to traditional suckers</li>
+                <li>Stronger root system for better stability</li>
+            </ul>
+        </section>
+
+        <!-- Product 2: Pomegranate -->
+        <section class="product-section alt">
+            <h2><span class="icon">🔴</span> 2. Pomegranate Plants</h2>
+            <p>We provide authentic, true-to-type plants suitable for high-density planting and maximizing yield per acre.</p>
+            <ul>
+                <li>True-to-type tissue culture varieties</li>
+                <li>Uniform fruit size and deep red quality</li>
+                <li>High resistance to bacterial blight</li>
+                <li>Ensures premium market appeal and value</li>
+            </ul>
+        </section>
+
+        <!-- Product 3: Sugarcane -->
+        <section class="product-section">
+            <h2><span class="icon">🌾</span> 3. Sugarcane Tissue Culture Plants</h2>
+            <p>Plantlets designed for robust growth and higher sugar content, offering better returns for sugar mills and farmers.</p>
+            <ul>
+                <li>Early, mid, and late high-sugar varieties</li>
+                <li>Rapid field establishment and tillering</li>
+                <li>Greater cane weight and higher sugar recovery</li>
+                <li>Reduced risk from common cane diseases</li>
+            </ul>
+        </section>
+
+        <!-- Product 4: Turmeric & Ginger -->
+        <section class="product-section alt">
+            <h2><span class="icon">🥕</span> 4. Turmeric & Ginger Plants</h2>
+            <p>Our TC rhizomes guarantee purity and freedom from soil-borne diseases, leading to heavier and healthier harvests.</p>
+            <ul>
+                <li>High-curcumin turmeric varieties</li>
+                <li>Disease-free rhizome production</li>
+                <li>Excellent commercial demand in spice markets</li>
+                <li>Superior yield potential and uniformity</li>
+            </ul>
+        </section>
+
+        <!-- Product 5: Teak -->
+        <section class="product-section">
+            <h2><span class="icon">🌳</span> 5. Teak Plant (Tectona grandis)</h2>
+            <p>For forestry and long-term investment, we provide genetically superior, fast-growing teak varieties.</p>
+            <ul>
+                <li>Fast-growing clones for rapid maturation</li>
+                <li>Ideal for commercial agroforestry plantations</li>
+                <li>Straight trunk and superior timber quality</li>
+                <li>Reliable long-term investment returns</li>
+            </ul>
+        </section>
+
+        <!-- Product 6: Ornamental & Floriculture -->
+        <section class="product-section alt">
+            <h2><span class="icon">🌸</span> 6. Ornamental & Floriculture Plants</h2>
+            <p>Specializing in decorative species with robust genetics for retail and landscaping applications.</p>
+            <ul>
+                <li>High-value tissue culture indoor plants</li>
+                <li>Decorative foliage & consistent flowering varieties</li>
+                <li>Ideal for retail nursery and landscaping use</li>
+                <li>Consistent quality and vibrant appearance</li>
+            </ul>
+        </section>
+
+        <!-- Quality Promise CTA Block -->
+        <section class="quality-promise">
+            <h2>Our Quality Promise to You</h2>
+            <p>Every plant undergoes rigorous quality checks:</p>
+            <ul>
+                <li>✔ Pathogen & virus testing</li>
+                <li>✔ Genetic fidelity checks</li>
+                <li>✔ Controlled acclimatization</li>
+                <li>✔ Growth-stage evaluations</li>
+            </ul>
+        </section>
+
+        <p class="muted" style="text-align: center; margin-top:2rem;"><a href="contact.html">Request a Full Product Catalog and Price List →</a></p>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container footer-inner">
+            <p>© 2025 Vedagreen Biotech Pvt. Ltd. | Biotech Solutions for a Greener Future</p>
+            <nav class="footer-nav">
+                <a href="index.html">Home</a> · <a href="about.html">About</a> · <a href="products.html">Products</a>
+            </nav>
+        </div>
+    </footer>
+
+    <!-- 💻 EMBEDDED JAVASCRIPT FOR MOBILE NAVIGATION 💻 -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const navToggle = document.getElementById('navToggle');
+            const mainNav = document.getElementById('mainNav');
+
+            navToggle.addEventListener('click', function() {
+                mainNav.classList.toggle('nav-open');
+            });
+        });
+    </script>
+</body>
+</html>

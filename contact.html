@@ -1,0 +1,414 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Vedagreen Biotech — Contact</title>
+    
+    <style>
+        /* 1. Global Styles (Consistent with previous pages) */
+        *, *::before, *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        :root {
+            --color-primary: #0d471f; /* Deep Forest Green */
+            --color-secondary: #1a6237; /* Medium Green */
+            --color-accent: #38761d; /* Bright Green Link/Button */
+            --color-light: #f7f9f7; /* Off-White for Background */
+            --color-text: #333;
+            --color-muted: #6a6a6a;
+            --font-sans: 'Helvetica Neue', Arial, sans-serif;
+            --font-serif: 'Georgia', serif;
+        }
+
+        body {
+            font-family: var(--font-serif); 
+            line-height: 1.6;
+            color: var(--color-text);
+            background-color: #fff; /* White background for clean look */
+        }
+
+        h1 {
+            font-family: var(--font-sans);
+            font-size: 3.5rem; 
+            text-align: center;
+            color: var(--color-primary); 
+            margin-bottom: 0.5em;
+            text-transform: uppercase;
+        }
+        
+        h3 {
+            font-family: var(--font-sans);
+            color: var(--color-primary); 
+            font-size: 1.5rem;
+            border-bottom: 2px solid var(--color-accent);
+            padding-bottom: 10px;
+            margin-bottom: 15px;
+        }
+
+        a {
+            color: var(--color-accent);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        a:hover {
+            color: var(--color-secondary);
+            text-decoration: underline;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+        
+        .section {
+            padding: 4rem 0; 
+        }
+
+        /* 2. Header & Navigation */
+        .site-header {
+            background-color: #ffffff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        .header-inner {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .brand {
+            font-size: 1.75rem; 
+            font-weight: 800;
+            color: var(--color-secondary);
+        }
+        .nav ul {
+            list-style: none;
+            display: flex;
+            gap: 1.5rem;
+        }
+        .nav a {
+            font-weight: 600;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            padding: 0.5rem 0;
+        }
+        .nav-toggle {
+            display: none; 
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--color-primary);
+        }
+        
+        /* 3. Main Contact Layout */
+        .contact-section {
+            padding-top: 2rem;
+        }
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 2fr; /* Info on Left, Form/Map on Right */
+            gap: 40px;
+            background: var(--color-light); 
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            margin-top: 2rem;
+        }
+        
+        /* Contact Info & Channels */
+        .contact-info {
+            padding-right: 20px;
+        }
+        .contact-info p {
+            margin-bottom: 15px;
+            line-height: 1.4;
+        }
+        .contact-channels {
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px dashed var(--color-muted);
+        }
+        .channel-item {
+            padding: 10px 0;
+        }
+        .channel-item strong {
+            color: var(--color-secondary);
+            display: block;
+            margin-bottom: 5px;
+        }
+        
+        /* Contact Form Styling */
+        .contact-form form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            background: #ffffff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+        .form-group label {
+            font-weight: 600;
+            margin-bottom: 5px;
+            color: var(--color-secondary);
+            font-family: var(--font-sans);
+            font-size: 0.9rem;
+        }
+        .form-group input, .form-group textarea, .form-group select {
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 1rem;
+            font-family: var(--font-serif);
+            transition: border-color 0.3s;
+        }
+        .form-group input:focus, .form-group textarea:focus, .form-group select:focus {
+            border-color: var(--color-accent);
+            outline: none;
+            box-shadow: 0 0 5px rgba(56, 118, 29, 0.5);
+        }
+        .form-group textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+        
+        .submit-btn {
+            background-color: var(--color-primary);
+            color: white;
+            padding: 15px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1.1rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: background-color 0.3s ease;
+            margin-top: 10px;
+        }
+        .submit-btn:hover {
+            background-color: var(--color-secondary);
+        }
+        
+        /* Map Section */
+        .map-section {
+            margin-top: 3rem;
+        }
+        .map-section h2 {
+            font-size: 2rem;
+            color: var(--color-primary);
+            text-align: center;
+            margin-bottom: 20px;
+            border: none;
+            padding: 0;
+        }
+        .map-container {
+            height: 400px;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        /* 4. Footer */
+        .site-footer {
+            background-color: var(--color-primary);
+            color: #c9dbc1;
+            padding: 2rem 0; 
+            font-size: 0.9rem;
+            margin-top: 4rem; 
+            text-align: center;
+        }
+        
+        /* 5. Mobile Responsiveness */
+        @media (max-width: 900px) {
+            .contact-grid {
+                grid-template-columns: 1fr;
+                padding: 25px;
+            }
+            .contact-info {
+                padding-right: 0;
+                border-bottom: 1px solid #ddd;
+                padding-bottom: 20px;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.5rem;
+            }
+            .nav-toggle {
+                display: block;
+            }
+            .nav {
+                display: none; 
+                width: 100%;
+                position: absolute;
+                top: 75px;
+                left: 0;
+                background-color: #ffffff;
+                box-shadow: 0 5px 5px rgba(0, 0, 0, 0.1);
+                padding: 0;
+            }
+            .nav.nav-open {
+                display: block;
+            }
+            .nav ul {
+                flex-direction: column;
+                gap: 0;
+            }
+            .nav li {
+                border-bottom: 1px solid #eee;
+            }
+            .nav a {
+                display: block;
+                padding: 0.75rem 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="site-header">
+        <div class="container header-inner">
+            <a class="brand" href="index.html">Vedagreen Biotech</a>
+            <button id="navToggle" class="nav-toggle" aria-label="Toggle navigation">☰</button>
+            <nav id="mainNav" class="nav">
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="products.html">Products</a></li>
+                    <li><a href="services.html">Services</a></li>
+                    <li><a href="sustainability.html">Sustainability</a></li>
+                    <li><a href="gallery.html">Gallery</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container section contact-section">
+        <h1>Connect With Vedagreen 🌱</h1>
+        <p style="text-align: center; font-size: 1.1rem; color: var(--color-secondary); margin-bottom: 3rem;">
+            We are here to answer your questions about tissue culture, partnerships, and plant biotechnology.
+        </p>
+        
+        <div class="contact-grid">
+            
+            <aside class="contact-info">
+                <h3>Our Headquarters</h3>
+                <p><strong>Address:</strong><br/>
+                    Vedagreen Biotech Pvt. Ltd.<br/>
+                    Research & Development Center,<br/>
+                    Plot No. 456, Biotech Park, Noida - 201301, India
+                </p>
+                <p><strong>General Phone:</strong> <a href="tel:+911204008000">+91-120-4008000</a></p>
+                <p><strong>General Email:</strong> <a href="mailto:info@vedagreenbiotech.com">info@vedagreenbiotech.com</a></p>
+                <p><strong>Website:</strong> <a href="https://www.vedagreenbiotech.com">www.vedagreenbiotech.com</a></p>
+                <p><strong>Working Hours:</strong><br/>Mon–Sat: 9:00 AM – 6:00 PM<br/>Sunday: Closed</p>
+
+                <div class="contact-channels">
+                    <h3>Dedicated Channels</h3>
+                    <div class="channel-item">
+                        <strong>For Sales & Orders:</strong>
+                        <p><a href="mailto:sales@vedagreenbiotech.com">sales@vedagreenbiotech.com</a> | Ext: 101</p>
+                    </div>
+                    <div class="channel-item">
+                        <strong>Technical Support & Advisory:</strong>
+                        <p><a href="mailto:support@vedagreenbiotech.com">support@vedagreenbiotech.com</a> | Ext: 102</p>
+                    </div>
+                    <div class="channel-item">
+                        <strong>Careers & HR:</strong>
+                        <p><a href="mailto:careers@vedagreenbiotech.com">careers@vedagreenbiotech.com</a></p>
+                    </div>
+                </div>
+            </aside>
+            
+            <div class="contact-form">
+                <h3>Send Us A Message</h3>
+                <form action="submit-form.php" method="POST">
+                    
+                    <div class="form-group">
+                        <label for="name">Your Full Name *</label>
+                        <input type="text" id="name" name="name" required placeholder="John Doe" />
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="email">Your Email *</label>
+                        <input type="email" id="email" name="email" required placeholder="name@example.com" />
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="phone">Phone Number</label>
+                        <input type="tel" id="phone" name="phone" placeholder="+91-9876543210" />
+                    </div>
+
+                    <div class="form-group">
+                        <label for="topic">Inquiry Topic *</label>
+                        <select id="topic" name="topic" required>
+                            <option value="">-- Select Topic --</option>
+                            <option value="sales">Sales / Product Enquiry</option>
+                            <option value="support">Technical Support</option>
+                            <option value="partnership">Partnership / Collaboration</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="message">Your Message *</label>
+                        <textarea id="message" name="message" required placeholder="Tell us how we can help you..."></textarea>
+                    </div>
+                    
+                    <button type="submit" class="submit-btn">Send Message</button>
+                    
+                </form>
+            </div>
+        </div>
+
+        <section class="map-section">
+            <h2>Find Our Location</h2>
+            <div class="map-container">
+                <iframe 
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d112108.83546747192!2d77.30065099710375!3d28.58782352136054!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390ce5a43173357b%3A0x3775fcf958a74e64!2sNoida%2C%20Uttar%20Pradesh!5e0!3m2!1sen!2sin!4v1701168123456!5m2!1sen!2sin" 
+                    width="100%" 
+                    height="100%" 
+                    style="border:0;" 
+                    allowfullscreen="" 
+                    loading="lazy" 
+                    referrerpolicy="no-referrer-when-downgrade"
+                ></iframe>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="site-footer">
+        <div class="container footer-inner">
+            <p>© 2025 Vedagreen Biotech Pvt. Ltd. | Innovating for a Greener Tomorrow</p>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const navToggle = document.getElementById('navToggle');
+            const mainNav = document.getElementById('mainNav');
+
+            if (navToggle && mainNav) {
+                navToggle.addEventListener('click', function() {
+                    mainNav.classList.toggle('nav-open');
+                });
+            }
+        });
+    </script>
+</body>
+</html>
